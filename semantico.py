@@ -5,7 +5,7 @@ from lexer import tokens
 
 #Reglas semanticas
 errores = []
-
+        
 def verificar_variable_inicializada(variables_inicializadas, variable_name):
     if variable_name not in variables_inicializadas:
         if f"Variable '{variable_name}' no inicializada antes de su uso" not in errores:
