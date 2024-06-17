@@ -2,9 +2,7 @@
 
 from flask import Flask, request, render_template
 from lexer import tokenize
-from parser_1 import parse
-from semantico import errores
-
+from parser_1 import parse, errores
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
