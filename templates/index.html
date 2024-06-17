@@ -119,6 +119,18 @@ background: radial-gradient(circle, rgba(175,174,238,1) 0%, rgba(154,233,148,1) 
                     </p>
                 </div>
             </details>
+            
+            <details class="card mb-2">
+                <summary class="card-header " style="background-color: #6F2CF4; list-style: none;">
+                    <h5>TABLA DE SÍMBOLOS</h5>
+                </summary>
+                <ul>
+                    {% for key, value in symbols.items() %}
+                        <li>{{ key }} : {{ value }}</li>
+                    {% endfor %}
+                    
+                </ul>
+            </details>
         </div>
 
     </div>

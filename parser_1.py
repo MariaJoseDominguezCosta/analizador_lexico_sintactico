@@ -32,7 +32,7 @@ def p_statement(t):
     t[0] = [t[1]]   
 def p_statement_for(t):
     '''for_statement : FOR LPAREN for_declaration expression SEMICOLON expression RPAREN LBRACE statement RBRACE'''
-    t[0] = ('for', t[3], t[9])
+    t[0] = ('for', t[4], t[9])
 
 def p_for_declaration(t):
     '''for_declaration : declaration
@@ -142,6 +142,10 @@ parser = yacc.yacc()
 
 # Función para analizar una expresión
 def parse(expression):
+    global symbol_table
+    global errores
+
+    # Reiniciar tabla de símbolos y errores
     error_message = None  # Inicializa la variable error_message
     resultado = None  # Inicializa la variable resultado
     try:
