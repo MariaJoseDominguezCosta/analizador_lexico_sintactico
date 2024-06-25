@@ -96,7 +96,8 @@ def p_expression(t):
         errores.append(f"Error: Variable '{t[1]}' no declarada.")
 
 def p_statement_print(t):
-    '''print : PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN STRING PLUS expression RPAREN SEMICOLON'''
+    '''print : PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN STRING PLUS expression RPAREN SEMICOLON
+    | PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN expression RPAREN SEMICOLON'''
     t[0] = f"Print: {t[3]} {t[5]}"
 
 def p_statement_if(t):

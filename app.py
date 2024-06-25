@@ -8,6 +8,7 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def index():
     errores.clear()
+    
     symbol_table.clear()
     result_lex = []
     result_syntax = ''

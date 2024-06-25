@@ -33,41 +33,42 @@ Rule 23    expression -> ID
 Rule 24    expression -> ID PLUSPLUS
 Rule 25    expression -> ID RELOP expression
 Rule 26    print -> PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN STRING PLUS expression RPAREN SEMICOLON
-Rule 27    statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE
-Rule 28    statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE
-Rule 29    statement -> WHILE LPAREN expression RPAREN LBRACE statement RBRACE
-Rule 30    assignment -> ID EQUALS expression SEMICOLON
-Rule 31    block -> LBRACE statement RBRACE
+Rule 27    print -> PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN expression RPAREN SEMICOLON
+Rule 28    statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE
+Rule 29    statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE
+Rule 30    statement -> WHILE LPAREN expression RPAREN LBRACE statement RBRACE
+Rule 31    assignment -> ID EQUALS expression SEMICOLON
+Rule 32    block -> LBRACE statement RBRACE
 
 Terminals, with rules where they appear
 
 DIVIDE               : 20
-ELSE                 : 28
-EQUALS               : 11 12 30
+ELSE                 : 29
+EQUALS               : 11 12 31
 FALSE                : 
 FLOAT                : 15
 FOR                  : 9
-ID                   : 11 12 13 23 24 25 30
-IF                   : 27 28
+ID                   : 11 12 13 23 24 25 31
+IF                   : 28 29
 INT                  : 14
-LBRACE               : 9 27 28 28 29 31
-LPAREN               : 9 26 27 28 29
+LBRACE               : 9 28 29 29 30 32
+LPAREN               : 9 26 27 28 29 30
 MINUS                : 18 21
 NUMBER               : 22
 PLUS                 : 17 26
 PLUSPLUS             : 24
-PRINT1               : 26
-PRINT2               : 26
-PRINT3               : 26
-PUNTO                : 26 26
-RBRACE               : 9 27 28 28 29 31
+PRINT1               : 26 27
+PRINT2               : 26 27
+PRINT3               : 26 27
+PUNTO                : 26 26 27 27
+RBRACE               : 9 28 29 29 30 32
 RELOP                : 25
-RPAREN               : 9 26 27 28 29
-SEMICOLON            : 9 11 12 13 26 30
+RPAREN               : 9 26 27 28 29 30
+SEMICOLON            : 9 11 12 13 26 27 31
 STRING               : 26
 STRING_TYPE          : 16
 TIMES                : 19
-WHILE                : 29
+WHILE                : 30
 error                : 
 
 Nonterminals, with rules where they appear
@@ -75,12 +76,12 @@ Nonterminals, with rules where they appear
 assignment           : 6
 block                : 8
 declaration          : 4 10
-expression           : 9 9 11 12 17 17 18 18 19 19 20 20 21 25 26 27 28 29 30
+expression           : 9 9 11 12 17 17 18 18 19 19 20 20 21 25 26 27 28 29 30 31
 for_declaration      : 9
 for_statement        : 5
 print                : 7
 program              : 0
-statement            : 2 3 9 27 28 28 29 31
+statement            : 2 3 9 28 29 29 30 32
 statement_list       : 1 3
 type                 : 12 13
 
@@ -97,15 +98,16 @@ state 0
     (6) statement -> . assignment
     (7) statement -> . print
     (8) statement -> . block
-    (27) statement -> . IF LPAREN expression RPAREN LBRACE statement RBRACE
-    (28) statement -> . IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE
-    (29) statement -> . WHILE LPAREN expression RPAREN LBRACE statement RBRACE
+    (28) statement -> . IF LPAREN expression RPAREN LBRACE statement RBRACE
+    (29) statement -> . IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE
+    (30) statement -> . WHILE LPAREN expression RPAREN LBRACE statement RBRACE
     (12) declaration -> . type ID EQUALS expression SEMICOLON
     (13) declaration -> . type ID SEMICOLON
     (9) for_statement -> . FOR LPAREN for_declaration expression SEMICOLON expression RPAREN LBRACE statement RBRACE
-    (30) assignment -> . ID EQUALS expression SEMICOLON
+    (31) assignment -> . ID EQUALS expression SEMICOLON
     (26) print -> . PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN STRING PLUS expression RPAREN SEMICOLON
-    (31) block -> . LBRACE statement RBRACE
+    (27) print -> . PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN expression RPAREN SEMICOLON
+    (32) block -> . LBRACE statement RBRACE
     (14) type -> . INT
     (15) type -> . FLOAT
     (16) type -> . STRING_TYPE
@@ -145,15 +147,16 @@ state 2
     (6) statement -> . assignment
     (7) statement -> . print
     (8) statement -> . block
-    (27) statement -> . IF LPAREN expression RPAREN LBRACE statement RBRACE
-    (28) statement -> . IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE
-    (29) statement -> . WHILE LPAREN expression RPAREN LBRACE statement RBRACE
+    (28) statement -> . IF LPAREN expression RPAREN LBRACE statement RBRACE
+    (29) statement -> . IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE
+    (30) statement -> . WHILE LPAREN expression RPAREN LBRACE statement RBRACE
     (12) declaration -> . type ID EQUALS expression SEMICOLON
     (13) declaration -> . type ID SEMICOLON
     (9) for_statement -> . FOR LPAREN for_declaration expression SEMICOLON expression RPAREN LBRACE statement RBRACE
-    (30) assignment -> . ID EQUALS expression SEMICOLON
+    (31) assignment -> . ID EQUALS expression SEMICOLON
     (26) print -> . PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN STRING PLUS expression RPAREN SEMICOLON
-    (31) block -> . LBRACE statement RBRACE
+    (27) print -> . PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN expression RPAREN SEMICOLON
+    (32) block -> . LBRACE statement RBRACE
     (14) type -> . INT
     (15) type -> . FLOAT
     (16) type -> . STRING_TYPE
@@ -280,29 +283,30 @@ state 8
 
 state 9
 
-    (27) statement -> IF . LPAREN expression RPAREN LBRACE statement RBRACE
-    (28) statement -> IF . LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE
+    (28) statement -> IF . LPAREN expression RPAREN LBRACE statement RBRACE
+    (29) statement -> IF . LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE
 
     LPAREN          shift and go to state 20
 
 
 state 10
 
-    (31) block -> LBRACE . statement RBRACE
+    (32) block -> LBRACE . statement RBRACE
     (4) statement -> . declaration
     (5) statement -> . for_statement
     (6) statement -> . assignment
     (7) statement -> . print
     (8) statement -> . block
-    (27) statement -> . IF LPAREN expression RPAREN LBRACE statement RBRACE
-    (28) statement -> . IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE
-    (29) statement -> . WHILE LPAREN expression RPAREN LBRACE statement RBRACE
+    (28) statement -> . IF LPAREN expression RPAREN LBRACE statement RBRACE
+    (29) statement -> . IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE
+    (30) statement -> . WHILE LPAREN expression RPAREN LBRACE statement RBRACE
     (12) declaration -> . type ID EQUALS expression SEMICOLON
     (13) declaration -> . type ID SEMICOLON
     (9) for_statement -> . FOR LPAREN for_declaration expression SEMICOLON expression RPAREN LBRACE statement RBRACE
-    (30) assignment -> . ID EQUALS expression SEMICOLON
+    (31) assignment -> . ID EQUALS expression SEMICOLON
     (26) print -> . PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN STRING PLUS expression RPAREN SEMICOLON
-    (31) block -> . LBRACE statement RBRACE
+    (27) print -> . PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN expression RPAREN SEMICOLON
+    (32) block -> . LBRACE statement RBRACE
     (14) type -> . INT
     (15) type -> . FLOAT
     (16) type -> . STRING_TYPE
@@ -327,7 +331,7 @@ state 10
 
 state 11
 
-    (29) statement -> WHILE . LPAREN expression RPAREN LBRACE statement RBRACE
+    (30) statement -> WHILE . LPAREN expression RPAREN LBRACE statement RBRACE
 
     LPAREN          shift and go to state 22
 
@@ -342,7 +346,7 @@ state 12
 
 state 13
 
-    (30) assignment -> ID . EQUALS expression SEMICOLON
+    (31) assignment -> ID . EQUALS expression SEMICOLON
 
     EQUALS          shift and go to state 24
 
@@ -357,6 +361,7 @@ state 14
 state 15
 
     (26) print -> PRINT1 . PUNTO PRINT2 PUNTO PRINT3 LPAREN STRING PLUS expression RPAREN SEMICOLON
+    (27) print -> PRINT1 . PUNTO PRINT2 PUNTO PRINT3 LPAREN expression RPAREN SEMICOLON
 
     PUNTO           shift and go to state 26
 
@@ -400,8 +405,8 @@ state 19
 
 state 20
 
-    (27) statement -> IF LPAREN . expression RPAREN LBRACE statement RBRACE
-    (28) statement -> IF LPAREN . expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE
+    (28) statement -> IF LPAREN . expression RPAREN LBRACE statement RBRACE
+    (29) statement -> IF LPAREN . expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE
     (17) expression -> . expression PLUS expression
     (18) expression -> . expression MINUS expression
     (19) expression -> . expression TIMES expression
@@ -420,14 +425,14 @@ state 20
 
 state 21
 
-    (31) block -> LBRACE statement . RBRACE
+    (32) block -> LBRACE statement . RBRACE
 
     RBRACE          shift and go to state 31
 
 
 state 22
 
-    (29) statement -> WHILE LPAREN . expression RPAREN LBRACE statement RBRACE
+    (30) statement -> WHILE LPAREN . expression RPAREN LBRACE statement RBRACE
     (17) expression -> . expression PLUS expression
     (18) expression -> . expression MINUS expression
     (19) expression -> . expression TIMES expression
@@ -455,7 +460,7 @@ state 23
 
 state 24
 
-    (30) assignment -> ID EQUALS . expression SEMICOLON
+    (31) assignment -> ID EQUALS . expression SEMICOLON
     (17) expression -> . expression PLUS expression
     (18) expression -> . expression MINUS expression
     (19) expression -> . expression TIMES expression
@@ -495,14 +500,15 @@ state 25
 state 26
 
     (26) print -> PRINT1 PUNTO . PRINT2 PUNTO PRINT3 LPAREN STRING PLUS expression RPAREN SEMICOLON
+    (27) print -> PRINT1 PUNTO . PRINT2 PUNTO PRINT3 LPAREN expression RPAREN SEMICOLON
 
     PRINT2          shift and go to state 39
 
 
 state 27
 
-    (27) statement -> IF LPAREN expression . RPAREN LBRACE statement RBRACE
-    (28) statement -> IF LPAREN expression . RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE
+    (28) statement -> IF LPAREN expression . RPAREN LBRACE statement RBRACE
+    (29) statement -> IF LPAREN expression . RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE
     (17) expression -> expression . PLUS expression
     (18) expression -> expression . MINUS expression
     (19) expression -> expression . TIMES expression
@@ -564,24 +570,24 @@ state 30
 
 state 31
 
-    (31) block -> LBRACE statement RBRACE .
+    (32) block -> LBRACE statement RBRACE .
 
-    IF              reduce using rule 31 (block -> LBRACE statement RBRACE .)
-    WHILE           reduce using rule 31 (block -> LBRACE statement RBRACE .)
-    FOR             reduce using rule 31 (block -> LBRACE statement RBRACE .)
-    ID              reduce using rule 31 (block -> LBRACE statement RBRACE .)
-    PRINT1          reduce using rule 31 (block -> LBRACE statement RBRACE .)
-    LBRACE          reduce using rule 31 (block -> LBRACE statement RBRACE .)
-    INT             reduce using rule 31 (block -> LBRACE statement RBRACE .)
-    FLOAT           reduce using rule 31 (block -> LBRACE statement RBRACE .)
-    STRING_TYPE     reduce using rule 31 (block -> LBRACE statement RBRACE .)
-    $end            reduce using rule 31 (block -> LBRACE statement RBRACE .)
-    RBRACE          reduce using rule 31 (block -> LBRACE statement RBRACE .)
+    IF              reduce using rule 32 (block -> LBRACE statement RBRACE .)
+    WHILE           reduce using rule 32 (block -> LBRACE statement RBRACE .)
+    FOR             reduce using rule 32 (block -> LBRACE statement RBRACE .)
+    ID              reduce using rule 32 (block -> LBRACE statement RBRACE .)
+    PRINT1          reduce using rule 32 (block -> LBRACE statement RBRACE .)
+    LBRACE          reduce using rule 32 (block -> LBRACE statement RBRACE .)
+    INT             reduce using rule 32 (block -> LBRACE statement RBRACE .)
+    FLOAT           reduce using rule 32 (block -> LBRACE statement RBRACE .)
+    STRING_TYPE     reduce using rule 32 (block -> LBRACE statement RBRACE .)
+    $end            reduce using rule 32 (block -> LBRACE statement RBRACE .)
+    RBRACE          reduce using rule 32 (block -> LBRACE statement RBRACE .)
 
 
 state 32
 
-    (29) statement -> WHILE LPAREN expression . RPAREN LBRACE statement RBRACE
+    (30) statement -> WHILE LPAREN expression . RPAREN LBRACE statement RBRACE
     (17) expression -> expression . PLUS expression
     (18) expression -> expression . MINUS expression
     (19) expression -> expression . TIMES expression
@@ -634,7 +640,7 @@ state 34
 
 state 35
 
-    (30) assignment -> ID EQUALS expression . SEMICOLON
+    (31) assignment -> ID EQUALS expression . SEMICOLON
     (17) expression -> expression . PLUS expression
     (18) expression -> expression . MINUS expression
     (19) expression -> expression . TIMES expression
@@ -685,14 +691,15 @@ state 38
 state 39
 
     (26) print -> PRINT1 PUNTO PRINT2 . PUNTO PRINT3 LPAREN STRING PLUS expression RPAREN SEMICOLON
+    (27) print -> PRINT1 PUNTO PRINT2 . PUNTO PRINT3 LPAREN expression RPAREN SEMICOLON
 
     PUNTO           shift and go to state 53
 
 
 state 40
 
-    (27) statement -> IF LPAREN expression RPAREN . LBRACE statement RBRACE
-    (28) statement -> IF LPAREN expression RPAREN . LBRACE statement RBRACE ELSE LBRACE statement RBRACE
+    (28) statement -> IF LPAREN expression RPAREN . LBRACE statement RBRACE
+    (29) statement -> IF LPAREN expression RPAREN . LBRACE statement RBRACE ELSE LBRACE statement RBRACE
 
     LBRACE          shift and go to state 54
 
@@ -827,7 +834,7 @@ state 47
 
 state 48
 
-    (29) statement -> WHILE LPAREN expression RPAREN . LBRACE statement RBRACE
+    (30) statement -> WHILE LPAREN expression RPAREN . LBRACE statement RBRACE
 
     LBRACE          shift and go to state 60
 
@@ -849,19 +856,19 @@ state 49
 
 state 50
 
-    (30) assignment -> ID EQUALS expression SEMICOLON .
+    (31) assignment -> ID EQUALS expression SEMICOLON .
 
-    IF              reduce using rule 30 (assignment -> ID EQUALS expression SEMICOLON .)
-    WHILE           reduce using rule 30 (assignment -> ID EQUALS expression SEMICOLON .)
-    FOR             reduce using rule 30 (assignment -> ID EQUALS expression SEMICOLON .)
-    ID              reduce using rule 30 (assignment -> ID EQUALS expression SEMICOLON .)
-    PRINT1          reduce using rule 30 (assignment -> ID EQUALS expression SEMICOLON .)
-    LBRACE          reduce using rule 30 (assignment -> ID EQUALS expression SEMICOLON .)
-    INT             reduce using rule 30 (assignment -> ID EQUALS expression SEMICOLON .)
-    FLOAT           reduce using rule 30 (assignment -> ID EQUALS expression SEMICOLON .)
-    STRING_TYPE     reduce using rule 30 (assignment -> ID EQUALS expression SEMICOLON .)
-    $end            reduce using rule 30 (assignment -> ID EQUALS expression SEMICOLON .)
-    RBRACE          reduce using rule 30 (assignment -> ID EQUALS expression SEMICOLON .)
+    IF              reduce using rule 31 (assignment -> ID EQUALS expression SEMICOLON .)
+    WHILE           reduce using rule 31 (assignment -> ID EQUALS expression SEMICOLON .)
+    FOR             reduce using rule 31 (assignment -> ID EQUALS expression SEMICOLON .)
+    ID              reduce using rule 31 (assignment -> ID EQUALS expression SEMICOLON .)
+    PRINT1          reduce using rule 31 (assignment -> ID EQUALS expression SEMICOLON .)
+    LBRACE          reduce using rule 31 (assignment -> ID EQUALS expression SEMICOLON .)
+    INT             reduce using rule 31 (assignment -> ID EQUALS expression SEMICOLON .)
+    FLOAT           reduce using rule 31 (assignment -> ID EQUALS expression SEMICOLON .)
+    STRING_TYPE     reduce using rule 31 (assignment -> ID EQUALS expression SEMICOLON .)
+    $end            reduce using rule 31 (assignment -> ID EQUALS expression SEMICOLON .)
+    RBRACE          reduce using rule 31 (assignment -> ID EQUALS expression SEMICOLON .)
 
 
 state 51
@@ -901,28 +908,30 @@ state 52
 state 53
 
     (26) print -> PRINT1 PUNTO PRINT2 PUNTO . PRINT3 LPAREN STRING PLUS expression RPAREN SEMICOLON
+    (27) print -> PRINT1 PUNTO PRINT2 PUNTO . PRINT3 LPAREN expression RPAREN SEMICOLON
 
     PRINT3          shift and go to state 64
 
 
 state 54
 
-    (27) statement -> IF LPAREN expression RPAREN LBRACE . statement RBRACE
-    (28) statement -> IF LPAREN expression RPAREN LBRACE . statement RBRACE ELSE LBRACE statement RBRACE
+    (28) statement -> IF LPAREN expression RPAREN LBRACE . statement RBRACE
+    (29) statement -> IF LPAREN expression RPAREN LBRACE . statement RBRACE ELSE LBRACE statement RBRACE
     (4) statement -> . declaration
     (5) statement -> . for_statement
     (6) statement -> . assignment
     (7) statement -> . print
     (8) statement -> . block
-    (27) statement -> . IF LPAREN expression RPAREN LBRACE statement RBRACE
-    (28) statement -> . IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE
-    (29) statement -> . WHILE LPAREN expression RPAREN LBRACE statement RBRACE
+    (28) statement -> . IF LPAREN expression RPAREN LBRACE statement RBRACE
+    (29) statement -> . IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE
+    (30) statement -> . WHILE LPAREN expression RPAREN LBRACE statement RBRACE
     (12) declaration -> . type ID EQUALS expression SEMICOLON
     (13) declaration -> . type ID SEMICOLON
     (9) for_statement -> . FOR LPAREN for_declaration expression SEMICOLON expression RPAREN LBRACE statement RBRACE
-    (30) assignment -> . ID EQUALS expression SEMICOLON
+    (31) assignment -> . ID EQUALS expression SEMICOLON
     (26) print -> . PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN STRING PLUS expression RPAREN SEMICOLON
-    (31) block -> . LBRACE statement RBRACE
+    (27) print -> . PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN expression RPAREN SEMICOLON
+    (32) block -> . LBRACE statement RBRACE
     (14) type -> . INT
     (15) type -> . FLOAT
     (16) type -> . STRING_TYPE
@@ -1056,21 +1065,22 @@ state 59
 
 state 60
 
-    (29) statement -> WHILE LPAREN expression RPAREN LBRACE . statement RBRACE
+    (30) statement -> WHILE LPAREN expression RPAREN LBRACE . statement RBRACE
     (4) statement -> . declaration
     (5) statement -> . for_statement
     (6) statement -> . assignment
     (7) statement -> . print
     (8) statement -> . block
-    (27) statement -> . IF LPAREN expression RPAREN LBRACE statement RBRACE
-    (28) statement -> . IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE
-    (29) statement -> . WHILE LPAREN expression RPAREN LBRACE statement RBRACE
+    (28) statement -> . IF LPAREN expression RPAREN LBRACE statement RBRACE
+    (29) statement -> . IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE
+    (30) statement -> . WHILE LPAREN expression RPAREN LBRACE statement RBRACE
     (12) declaration -> . type ID EQUALS expression SEMICOLON
     (13) declaration -> . type ID SEMICOLON
     (9) for_statement -> . FOR LPAREN for_declaration expression SEMICOLON expression RPAREN LBRACE statement RBRACE
-    (30) assignment -> . ID EQUALS expression SEMICOLON
+    (31) assignment -> . ID EQUALS expression SEMICOLON
     (26) print -> . PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN STRING PLUS expression RPAREN SEMICOLON
-    (31) block -> . LBRACE statement RBRACE
+    (27) print -> . PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN expression RPAREN SEMICOLON
+    (32) block -> . LBRACE statement RBRACE
     (14) type -> . INT
     (15) type -> . FLOAT
     (16) type -> . STRING_TYPE
@@ -1149,21 +1159,22 @@ state 63
 state 64
 
     (26) print -> PRINT1 PUNTO PRINT2 PUNTO PRINT3 . LPAREN STRING PLUS expression RPAREN SEMICOLON
+    (27) print -> PRINT1 PUNTO PRINT2 PUNTO PRINT3 . LPAREN expression RPAREN SEMICOLON
 
     LPAREN          shift and go to state 69
 
 
 state 65
 
-    (27) statement -> IF LPAREN expression RPAREN LBRACE statement . RBRACE
-    (28) statement -> IF LPAREN expression RPAREN LBRACE statement . RBRACE ELSE LBRACE statement RBRACE
+    (28) statement -> IF LPAREN expression RPAREN LBRACE statement . RBRACE
+    (29) statement -> IF LPAREN expression RPAREN LBRACE statement . RBRACE ELSE LBRACE statement RBRACE
 
     RBRACE          shift and go to state 70
 
 
 state 66
 
-    (29) statement -> WHILE LPAREN expression RPAREN LBRACE statement . RBRACE
+    (30) statement -> WHILE LPAREN expression RPAREN LBRACE statement . RBRACE
 
     RBRACE          shift and go to state 71
 
@@ -1195,109 +1206,7 @@ state 68
 state 69
 
     (26) print -> PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN . STRING PLUS expression RPAREN SEMICOLON
-
-    STRING          shift and go to state 73
-
-
-state 70
-
-    (27) statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE .
-    (28) statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE . ELSE LBRACE statement RBRACE
-
-    IF              reduce using rule 27 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE .)
-    WHILE           reduce using rule 27 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE .)
-    FOR             reduce using rule 27 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE .)
-    ID              reduce using rule 27 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE .)
-    PRINT1          reduce using rule 27 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE .)
-    LBRACE          reduce using rule 27 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE .)
-    INT             reduce using rule 27 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE .)
-    FLOAT           reduce using rule 27 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE .)
-    STRING_TYPE     reduce using rule 27 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE .)
-    $end            reduce using rule 27 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE .)
-    RBRACE          reduce using rule 27 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE .)
-    ELSE            shift and go to state 74
-
-
-state 71
-
-    (29) statement -> WHILE LPAREN expression RPAREN LBRACE statement RBRACE .
-
-    IF              reduce using rule 29 (statement -> WHILE LPAREN expression RPAREN LBRACE statement RBRACE .)
-    WHILE           reduce using rule 29 (statement -> WHILE LPAREN expression RPAREN LBRACE statement RBRACE .)
-    FOR             reduce using rule 29 (statement -> WHILE LPAREN expression RPAREN LBRACE statement RBRACE .)
-    ID              reduce using rule 29 (statement -> WHILE LPAREN expression RPAREN LBRACE statement RBRACE .)
-    PRINT1          reduce using rule 29 (statement -> WHILE LPAREN expression RPAREN LBRACE statement RBRACE .)
-    LBRACE          reduce using rule 29 (statement -> WHILE LPAREN expression RPAREN LBRACE statement RBRACE .)
-    INT             reduce using rule 29 (statement -> WHILE LPAREN expression RPAREN LBRACE statement RBRACE .)
-    FLOAT           reduce using rule 29 (statement -> WHILE LPAREN expression RPAREN LBRACE statement RBRACE .)
-    STRING_TYPE     reduce using rule 29 (statement -> WHILE LPAREN expression RPAREN LBRACE statement RBRACE .)
-    $end            reduce using rule 29 (statement -> WHILE LPAREN expression RPAREN LBRACE statement RBRACE .)
-    RBRACE          reduce using rule 29 (statement -> WHILE LPAREN expression RPAREN LBRACE statement RBRACE .)
-
-
-state 72
-
-    (9) for_statement -> FOR LPAREN for_declaration expression SEMICOLON expression RPAREN . LBRACE statement RBRACE
-
-    LBRACE          shift and go to state 75
-
-
-state 73
-
-    (26) print -> PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN STRING . PLUS expression RPAREN SEMICOLON
-
-    PLUS            shift and go to state 76
-
-
-state 74
-
-    (28) statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE . LBRACE statement RBRACE
-
-    LBRACE          shift and go to state 77
-
-
-state 75
-
-    (9) for_statement -> FOR LPAREN for_declaration expression SEMICOLON expression RPAREN LBRACE . statement RBRACE
-    (4) statement -> . declaration
-    (5) statement -> . for_statement
-    (6) statement -> . assignment
-    (7) statement -> . print
-    (8) statement -> . block
-    (27) statement -> . IF LPAREN expression RPAREN LBRACE statement RBRACE
-    (28) statement -> . IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE
-    (29) statement -> . WHILE LPAREN expression RPAREN LBRACE statement RBRACE
-    (12) declaration -> . type ID EQUALS expression SEMICOLON
-    (13) declaration -> . type ID SEMICOLON
-    (9) for_statement -> . FOR LPAREN for_declaration expression SEMICOLON expression RPAREN LBRACE statement RBRACE
-    (30) assignment -> . ID EQUALS expression SEMICOLON
-    (26) print -> . PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN STRING PLUS expression RPAREN SEMICOLON
-    (31) block -> . LBRACE statement RBRACE
-    (14) type -> . INT
-    (15) type -> . FLOAT
-    (16) type -> . STRING_TYPE
-
-    IF              shift and go to state 9
-    WHILE           shift and go to state 11
-    FOR             shift and go to state 14
-    ID              shift and go to state 13
-    PRINT1          shift and go to state 15
-    LBRACE          shift and go to state 10
-    INT             shift and go to state 16
-    FLOAT           shift and go to state 17
-    STRING_TYPE     shift and go to state 18
-
-    statement                      shift and go to state 78
-    declaration                    shift and go to state 4
-    for_statement                  shift and go to state 5
-    assignment                     shift and go to state 6
-    print                          shift and go to state 7
-    block                          shift and go to state 8
-    type                           shift and go to state 12
-
-state 76
-
-    (26) print -> PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN STRING PLUS . expression RPAREN SEMICOLON
+    (27) print -> PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN . expression RPAREN SEMICOLON
     (17) expression -> . expression PLUS expression
     (18) expression -> . expression MINUS expression
     (19) expression -> . expression TIMES expression
@@ -1308,29 +1217,103 @@ state 76
     (24) expression -> . ID PLUSPLUS
     (25) expression -> . ID RELOP expression
 
+    STRING          shift and go to state 73
     MINUS           shift and go to state 28
     NUMBER          shift and go to state 29
     ID              shift and go to state 30
 
-    expression                     shift and go to state 79
+    expression                     shift and go to state 74
 
-state 77
+state 70
 
-    (28) statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE . statement RBRACE
+    (28) statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE .
+    (29) statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE . ELSE LBRACE statement RBRACE
+
+    IF              reduce using rule 28 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE .)
+    WHILE           reduce using rule 28 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE .)
+    FOR             reduce using rule 28 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE .)
+    ID              reduce using rule 28 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE .)
+    PRINT1          reduce using rule 28 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE .)
+    LBRACE          reduce using rule 28 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE .)
+    INT             reduce using rule 28 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE .)
+    FLOAT           reduce using rule 28 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE .)
+    STRING_TYPE     reduce using rule 28 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE .)
+    $end            reduce using rule 28 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE .)
+    RBRACE          reduce using rule 28 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE .)
+    ELSE            shift and go to state 75
+
+
+state 71
+
+    (30) statement -> WHILE LPAREN expression RPAREN LBRACE statement RBRACE .
+
+    IF              reduce using rule 30 (statement -> WHILE LPAREN expression RPAREN LBRACE statement RBRACE .)
+    WHILE           reduce using rule 30 (statement -> WHILE LPAREN expression RPAREN LBRACE statement RBRACE .)
+    FOR             reduce using rule 30 (statement -> WHILE LPAREN expression RPAREN LBRACE statement RBRACE .)
+    ID              reduce using rule 30 (statement -> WHILE LPAREN expression RPAREN LBRACE statement RBRACE .)
+    PRINT1          reduce using rule 30 (statement -> WHILE LPAREN expression RPAREN LBRACE statement RBRACE .)
+    LBRACE          reduce using rule 30 (statement -> WHILE LPAREN expression RPAREN LBRACE statement RBRACE .)
+    INT             reduce using rule 30 (statement -> WHILE LPAREN expression RPAREN LBRACE statement RBRACE .)
+    FLOAT           reduce using rule 30 (statement -> WHILE LPAREN expression RPAREN LBRACE statement RBRACE .)
+    STRING_TYPE     reduce using rule 30 (statement -> WHILE LPAREN expression RPAREN LBRACE statement RBRACE .)
+    $end            reduce using rule 30 (statement -> WHILE LPAREN expression RPAREN LBRACE statement RBRACE .)
+    RBRACE          reduce using rule 30 (statement -> WHILE LPAREN expression RPAREN LBRACE statement RBRACE .)
+
+
+state 72
+
+    (9) for_statement -> FOR LPAREN for_declaration expression SEMICOLON expression RPAREN . LBRACE statement RBRACE
+
+    LBRACE          shift and go to state 76
+
+
+state 73
+
+    (26) print -> PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN STRING . PLUS expression RPAREN SEMICOLON
+
+    PLUS            shift and go to state 77
+
+
+state 74
+
+    (27) print -> PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN expression . RPAREN SEMICOLON
+    (17) expression -> expression . PLUS expression
+    (18) expression -> expression . MINUS expression
+    (19) expression -> expression . TIMES expression
+    (20) expression -> expression . DIVIDE expression
+
+    RPAREN          shift and go to state 78
+    PLUS            shift and go to state 41
+    MINUS           shift and go to state 42
+    TIMES           shift and go to state 43
+    DIVIDE          shift and go to state 44
+
+
+state 75
+
+    (29) statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE . LBRACE statement RBRACE
+
+    LBRACE          shift and go to state 79
+
+
+state 76
+
+    (9) for_statement -> FOR LPAREN for_declaration expression SEMICOLON expression RPAREN LBRACE . statement RBRACE
     (4) statement -> . declaration
     (5) statement -> . for_statement
     (6) statement -> . assignment
     (7) statement -> . print
     (8) statement -> . block
-    (27) statement -> . IF LPAREN expression RPAREN LBRACE statement RBRACE
-    (28) statement -> . IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE
-    (29) statement -> . WHILE LPAREN expression RPAREN LBRACE statement RBRACE
+    (28) statement -> . IF LPAREN expression RPAREN LBRACE statement RBRACE
+    (29) statement -> . IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE
+    (30) statement -> . WHILE LPAREN expression RPAREN LBRACE statement RBRACE
     (12) declaration -> . type ID EQUALS expression SEMICOLON
     (13) declaration -> . type ID SEMICOLON
     (9) for_statement -> . FOR LPAREN for_declaration expression SEMICOLON expression RPAREN LBRACE statement RBRACE
-    (30) assignment -> . ID EQUALS expression SEMICOLON
+    (31) assignment -> . ID EQUALS expression SEMICOLON
     (26) print -> . PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN STRING PLUS expression RPAREN SEMICOLON
-    (31) block -> . LBRACE statement RBRACE
+    (27) print -> . PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN expression RPAREN SEMICOLON
+    (32) block -> . LBRACE statement RBRACE
     (14) type -> . INT
     (15) type -> . FLOAT
     (16) type -> . STRING_TYPE
@@ -1353,14 +1336,80 @@ state 77
     block                          shift and go to state 8
     type                           shift and go to state 12
 
+state 77
+
+    (26) print -> PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN STRING PLUS . expression RPAREN SEMICOLON
+    (17) expression -> . expression PLUS expression
+    (18) expression -> . expression MINUS expression
+    (19) expression -> . expression TIMES expression
+    (20) expression -> . expression DIVIDE expression
+    (21) expression -> . MINUS expression
+    (22) expression -> . NUMBER
+    (23) expression -> . ID
+    (24) expression -> . ID PLUSPLUS
+    (25) expression -> . ID RELOP expression
+
+    MINUS           shift and go to state 28
+    NUMBER          shift and go to state 29
+    ID              shift and go to state 30
+
+    expression                     shift and go to state 81
+
 state 78
 
-    (9) for_statement -> FOR LPAREN for_declaration expression SEMICOLON expression RPAREN LBRACE statement . RBRACE
+    (27) print -> PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN expression RPAREN . SEMICOLON
 
-    RBRACE          shift and go to state 81
+    SEMICOLON       shift and go to state 82
 
 
 state 79
+
+    (29) statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE . statement RBRACE
+    (4) statement -> . declaration
+    (5) statement -> . for_statement
+    (6) statement -> . assignment
+    (7) statement -> . print
+    (8) statement -> . block
+    (28) statement -> . IF LPAREN expression RPAREN LBRACE statement RBRACE
+    (29) statement -> . IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE
+    (30) statement -> . WHILE LPAREN expression RPAREN LBRACE statement RBRACE
+    (12) declaration -> . type ID EQUALS expression SEMICOLON
+    (13) declaration -> . type ID SEMICOLON
+    (9) for_statement -> . FOR LPAREN for_declaration expression SEMICOLON expression RPAREN LBRACE statement RBRACE
+    (31) assignment -> . ID EQUALS expression SEMICOLON
+    (26) print -> . PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN STRING PLUS expression RPAREN SEMICOLON
+    (27) print -> . PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN expression RPAREN SEMICOLON
+    (32) block -> . LBRACE statement RBRACE
+    (14) type -> . INT
+    (15) type -> . FLOAT
+    (16) type -> . STRING_TYPE
+
+    IF              shift and go to state 9
+    WHILE           shift and go to state 11
+    FOR             shift and go to state 14
+    ID              shift and go to state 13
+    PRINT1          shift and go to state 15
+    LBRACE          shift and go to state 10
+    INT             shift and go to state 16
+    FLOAT           shift and go to state 17
+    STRING_TYPE     shift and go to state 18
+
+    statement                      shift and go to state 83
+    declaration                    shift and go to state 4
+    for_statement                  shift and go to state 5
+    assignment                     shift and go to state 6
+    print                          shift and go to state 7
+    block                          shift and go to state 8
+    type                           shift and go to state 12
+
+state 80
+
+    (9) for_statement -> FOR LPAREN for_declaration expression SEMICOLON expression RPAREN LBRACE statement . RBRACE
+
+    RBRACE          shift and go to state 84
+
+
+state 81
 
     (26) print -> PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN STRING PLUS expression . RPAREN SEMICOLON
     (17) expression -> expression . PLUS expression
@@ -1368,21 +1417,38 @@ state 79
     (19) expression -> expression . TIMES expression
     (20) expression -> expression . DIVIDE expression
 
-    RPAREN          shift and go to state 82
+    RPAREN          shift and go to state 85
     PLUS            shift and go to state 41
     MINUS           shift and go to state 42
     TIMES           shift and go to state 43
     DIVIDE          shift and go to state 44
 
 
-state 80
+state 82
 
-    (28) statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement . RBRACE
+    (27) print -> PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN expression RPAREN SEMICOLON .
 
-    RBRACE          shift and go to state 83
+    IF              reduce using rule 27 (print -> PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN expression RPAREN SEMICOLON .)
+    WHILE           reduce using rule 27 (print -> PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN expression RPAREN SEMICOLON .)
+    FOR             reduce using rule 27 (print -> PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN expression RPAREN SEMICOLON .)
+    ID              reduce using rule 27 (print -> PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN expression RPAREN SEMICOLON .)
+    PRINT1          reduce using rule 27 (print -> PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN expression RPAREN SEMICOLON .)
+    LBRACE          reduce using rule 27 (print -> PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN expression RPAREN SEMICOLON .)
+    INT             reduce using rule 27 (print -> PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN expression RPAREN SEMICOLON .)
+    FLOAT           reduce using rule 27 (print -> PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN expression RPAREN SEMICOLON .)
+    STRING_TYPE     reduce using rule 27 (print -> PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN expression RPAREN SEMICOLON .)
+    $end            reduce using rule 27 (print -> PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN expression RPAREN SEMICOLON .)
+    RBRACE          reduce using rule 27 (print -> PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN expression RPAREN SEMICOLON .)
 
 
-state 81
+state 83
+
+    (29) statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement . RBRACE
+
+    RBRACE          shift and go to state 86
+
+
+state 84
 
     (9) for_statement -> FOR LPAREN for_declaration expression SEMICOLON expression RPAREN LBRACE statement RBRACE .
 
@@ -1399,31 +1465,31 @@ state 81
     RBRACE          reduce using rule 9 (for_statement -> FOR LPAREN for_declaration expression SEMICOLON expression RPAREN LBRACE statement RBRACE .)
 
 
-state 82
+state 85
 
     (26) print -> PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN STRING PLUS expression RPAREN . SEMICOLON
 
-    SEMICOLON       shift and go to state 84
+    SEMICOLON       shift and go to state 87
 
 
-state 83
+state 86
 
-    (28) statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE .
+    (29) statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE .
 
-    IF              reduce using rule 28 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE .)
-    WHILE           reduce using rule 28 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE .)
-    FOR             reduce using rule 28 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE .)
-    ID              reduce using rule 28 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE .)
-    PRINT1          reduce using rule 28 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE .)
-    LBRACE          reduce using rule 28 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE .)
-    INT             reduce using rule 28 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE .)
-    FLOAT           reduce using rule 28 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE .)
-    STRING_TYPE     reduce using rule 28 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE .)
-    $end            reduce using rule 28 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE .)
-    RBRACE          reduce using rule 28 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE .)
+    IF              reduce using rule 29 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE .)
+    WHILE           reduce using rule 29 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE .)
+    FOR             reduce using rule 29 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE .)
+    ID              reduce using rule 29 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE .)
+    PRINT1          reduce using rule 29 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE .)
+    LBRACE          reduce using rule 29 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE .)
+    INT             reduce using rule 29 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE .)
+    FLOAT           reduce using rule 29 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE .)
+    STRING_TYPE     reduce using rule 29 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE .)
+    $end            reduce using rule 29 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE .)
+    RBRACE          reduce using rule 29 (statement -> IF LPAREN expression RPAREN LBRACE statement RBRACE ELSE LBRACE statement RBRACE .)
 
 
-state 84
+state 87
 
     (26) print -> PRINT1 PUNTO PRINT2 PUNTO PRINT3 LPAREN STRING PLUS expression RPAREN SEMICOLON .
 
